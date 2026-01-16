@@ -2,6 +2,7 @@ package com.agrosurprecios.agrosurprecios_api.domain;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "precios_arveja")
@@ -12,7 +13,7 @@ public class PrecioArveja {
     private Long id;
 
     @Column(nullable = false)
-    private LocalDate fecha;
+    private LocalDateTime fecha;
 
     @Column(name = "precio_bulto", nullable = false)
     private Double precioBulto;
@@ -23,7 +24,7 @@ public class PrecioArveja {
     protected PrecioArveja() {
         // constructor requerido por JPA
     }
-    public PrecioArveja(LocalDate fecha, Double precioBulto, String mercado) {
+    public PrecioArveja(LocalDateTime  fecha, Double precioBulto, String mercado) {
         this.fecha = fecha;
         this.precioBulto = precioBulto;
         this.mercado = mercado;
@@ -45,11 +46,11 @@ public class PrecioArveja {
         this.precioBulto = precioBulto;
     }
 
-    public LocalDate getFecha() {
+    public LocalDateTime  getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(LocalDateTime  fecha) {
         this.fecha = fecha;
     }
 
