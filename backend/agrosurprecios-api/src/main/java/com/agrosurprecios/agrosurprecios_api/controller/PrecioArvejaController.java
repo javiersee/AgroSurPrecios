@@ -2,6 +2,8 @@ package com.agrosurprecios.agrosurprecios_api.controller;
 
 import com.agrosurprecios.agrosurprecios_api.service.PrecioArvejaService;
 import com.agrosurprecios.agrosurprecios_api.domain.PrecioArveja;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
