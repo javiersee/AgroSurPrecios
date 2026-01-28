@@ -1,0 +1,24 @@
+@if (dato) {
+  <div class="card-arveja">
+    <div class="card-header">
+      <span class="dot-live"></span>
+      <span class="header-text">Último registro</span>
+    </div>
+
+    <h2 class="hora">
+      {{ dato.fecha | date:'shortTime' }}<span class="ss">{{ dato.fecha | date:'ss' }}s</span>
+    </h2>
+    <p class="fecha-larga">{{ dato.fecha | date:'EEEE, d de MMMM yyyy' }}</p>
+
+    <div class="divider"></div>
+
+    <span class="label-producto">Bulto de Arveja</span>
+    <h1 class="precio">{{ dato.precioBulto | currency:'COP':'symbol-narrow':'1.0-0' }}</h1>
+    
+    <div class="mercado-tag">
+      📍 {{ dato.mercado }}
+    </div>
+  </div>
+} @else {
+  <div class="loading">Cargando datos de Ipiales...</div>
+}

@@ -1,0 +1,106 @@
+/* Centrado total del componente en la pantalla o contenedor */
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 0;
+}
+
+.card-arveja {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  /* Sombra suave para profundidad */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  /* El verde de tu marca */
+  border-top: 6px solid #6b9e35; 
+  position: relative;
+  overflow: hidden;
+}
+
+.card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.dot-live {
+  height: 10px;
+  width: 10px;
+  background-color: #e74c3c;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #e74c3c;
+  animation: pulse 1.5s infinite;
+}
+
+.header-text {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #95a5a6;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.hora {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  line-height: 1;
+}
+
+.ss {
+  font-size: 1.4rem;
+  color: #95a5a6;
+  font-weight: 400;
+}
+
+.fecha-larga {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin: 0.5rem 0 1.5rem 0;
+}
+
+.divider {
+  height: 1px;
+  background: #f0f0f0;
+  margin: 1.5rem 0;
+}
+
+.label-producto {
+  display: block;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-bottom: 0.5rem;
+}
+
+.precio {
+  font-size: 2.8rem;
+  font-weight: 800;
+  /* Usando el verde exacto de tu imagen */
+  color: #6b9e35; 
+  margin: 0;
+}
+
+.mercado-tag {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 6px 15px;
+  background: #f1f8e9;
+  color: #6b9e35;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}
