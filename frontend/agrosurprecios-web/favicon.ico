@@ -1,0 +1,2 @@
+name,slug,migratable,color_hex,file_path,format
+"Green Icon","green-icon",true,"#00A000","/assets/icons/green-icon.ico","ico"
