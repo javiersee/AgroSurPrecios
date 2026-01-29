@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -33,5 +34,12 @@ public class PrecioArvejaController {
     @GetMapping
     public List<PrecioArveja> listar() {
         return service.listar();
+    }
+
+    @GetMapping("/dia")
+    public List<PrecioArveja> preciosPorDia(@RequestParam String fecha) {
+
+        LocalDate localDate = LocalDate.parse(fecha);
+        return service.obtenerPorDia(localDate);
     }
 }

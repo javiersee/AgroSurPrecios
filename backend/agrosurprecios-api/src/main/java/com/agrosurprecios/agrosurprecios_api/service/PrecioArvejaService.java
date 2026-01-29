@@ -41,4 +41,11 @@ public class PrecioArvejaService {
         List<PrecioArveja> lista = repository.findAllByOrderByFechaDesc();
         return lista.isEmpty() ? null : lista.get(0);
     }
+    public List<PrecioArveja> obtenerPorDia(LocalDate fecha) {
+
+        LocalDateTime inicio = fecha.atStartOfDay();
+        LocalDateTime fin = fecha.atTime(23,59,59);
+
+        return repository.findByFechaBetween(inicio, fin);
+    }
 }
