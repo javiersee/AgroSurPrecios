@@ -1,3 +1,10 @@
 <h2>📊 Histograma de precios de la arveja</h2>
 
+<select (change)="onPeriodoChange($event)">
+  <option value="hoy">Hoy</option>
+  <option value="semana">Semana</option>
+  <option value="mes">Mes</option>
+  <option value="anio">Año</option>
+</select>
+
 <canvas id="histogramaPrecios"></canvas>

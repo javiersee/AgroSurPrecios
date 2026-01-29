@@ -19,6 +19,10 @@ export class PrecioHistograma implements OnInit {
   ngOnInit(): void {
     this.obtenerPrecios();
   }
+  onPeriodoChange(event: any) {
+  //this.periodo = event.target.value;
+  //this.cargarDatos();
+ }
 
   obtenerPrecios() {
     this.precioService.obtenerHistorico().subscribe({
