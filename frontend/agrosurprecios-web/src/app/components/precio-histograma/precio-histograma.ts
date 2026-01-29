@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PrecioArvejaService } from '../../services/precio-arveja-service';
 import { PrecioArveja } from '../../models/precio-arveja.model';
 import Chart from 'chart.js/auto';
@@ -11,29 +11,35 @@ import Chart from 'chart.js/auto';
 })
 export class PrecioHistograma implements OnInit {
 
-  precios: PrecioArveja[] = []; 
+  precios: PrecioArveja[] = [];
   chart!: Chart;
+
   constructor(private precioService: PrecioArvejaService) {}
 
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.obtenerPrecios();
   }
+
   obtenerPrecios() {
     this.precioService.obtenerHistorico().subscribe({
       next: data => {
-        // ordenar por fecha ascendente
+
+        // ✅ Ordenar por fecha ascendente
         this.precios = data.sort(
           (a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime()
         );
 
-        this.crearHistograma();
+        this.crearGraficoLinea(); // 🔥 CAMBIO NOMBRE FUNCIÓN
       },
       error: err => console.error('Error al obtener precios', err)
     });
   }
-  crearHistograma() {
+
+  crearGraficoLinea() {
+
+    // ✅ Fecha + Hora (Trading necesita tiempo completo)
     const labels = this.precios.map(p =>
-      new Date(p.fecha).toLocaleDateString()
+      new Date(p.fecha).toLocaleString()
     );
 
     const valores = this.precios.map(p => p.precioBulto);
@@ -43,16 +49,41 @@ export class PrecioHistograma implements OnInit {
     }
 
     this.chart = new Chart('histogramaPrecios', {
-      type: 'bar',
+      type: 'line', // 🔥 CAMBIO CLAVE (ANTES era bar)
+
       data: {
         labels,
         datasets: [{
           label: 'Precio por bulto (COP)',
-          data: valores
+          data: valores,
+          borderWidth: 2,
+          tension: 0.3,     // curva suave tipo trading
+          pointRadius: 2,   // puntos pequeños
+          fill: false       // sin relleno
         }]
       },
+
       options: {
-        responsive: true
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true
+          }
+        },
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Fecha y Hora'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Precio (COP)'
+            }
+          }
+        }
       }
     });
   }
