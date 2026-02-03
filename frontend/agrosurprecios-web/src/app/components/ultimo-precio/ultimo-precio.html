@@ -8,7 +8,7 @@
     <h2 class="hora">
       {{ dato.fecha | date:'shortTime' }}<span class="ss">{{ dato.fecha | date:'ss' }}s</span>
     </h2>
-    <p class="fecha-larga">{{ dato.fecha | date:'EEEE, d de MMMM yyyy' }}</p>
+    <p class="fecha-larga">{{ dato.fecha | date:"EEEE, d 'de' MMMM yyyy" }}</p>
 
     <div class="divider"></div>
 
