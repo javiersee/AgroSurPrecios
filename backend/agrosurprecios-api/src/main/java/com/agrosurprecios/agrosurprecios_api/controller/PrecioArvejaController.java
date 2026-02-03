@@ -1,5 +1,7 @@
 package com.agrosurprecios.agrosurprecios_api.controller;
 
+import com.agrosurprecios.agrosurprecios_api.domain.HistorialSemanalDTO;
+import com.agrosurprecios.agrosurprecios_api.domain.PrecioPeriodoDTO;
 import com.agrosurprecios.agrosurprecios_api.service.PrecioArvejaService;
 import com.agrosurprecios.agrosurprecios_api.domain.PrecioArveja;
 import org.springframework.http.HttpStatus;
@@ -45,5 +47,34 @@ public class PrecioArvejaController {
     @GetMapping("/promedioTotal")
     public Double promedioTotal() {
         return service.obtenerPromedioTotal();
+    }
+    @GetMapping("/hoy")
+    public ResponseEntity<PrecioPeriodoDTO> getPreciosHoy() {
+        PrecioPeriodoDTO datosHoy = service.obtenerDatosHoy();
+        return ResponseEntity.ok(datosHoy);
+    }
+
+    @GetMapping("/semana")
+    public ResponseEntity<PrecioPeriodoDTO> getPreciosSemana() {
+        return ResponseEntity.ok(service.obtenerDatosSemana());
+    }
+
+    @GetMapping("/historialSemanal")
+    public ResponseEntity<HistorialSemanalDTO> getHistorialSemanas() {
+        // Llamamos al método de tu Service que acabas de crear
+        HistorialSemanalDTO historial = service.obtenerHistorialSemanas();
+
+        // Retornamos la respuesta con un estado 200 OK
+        return ResponseEntity.ok(historial);
+    }
+
+    @GetMapping("/mensual")
+    public ResponseEntity<HistorialSemanalDTO> getHistorialMensual() {
+        return ResponseEntity.ok(service.obtenerHistorialMeses());
+    }
+
+    @GetMapping("/anual")
+    public ResponseEntity<HistorialSemanalDTO> getHistorialAnual() {
+        return ResponseEntity.ok(service.obtenerHistorialAnios());
     }
 }
