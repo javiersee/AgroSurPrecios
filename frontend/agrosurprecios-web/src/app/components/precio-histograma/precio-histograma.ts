@@ -13,11 +13,13 @@ export class PrecioHistograma implements OnInit {
 
   precios: PrecioArveja[] = [];
   chart!: Chart;
+  periodo: string = 'Hoy';
 
   constructor(private precioService: PrecioArvejaService) {}
 
   ngOnInit(): void {
     this.obtenerPrecios();
+    this.periodo = "Hoy";
   }
   onPeriodoChange(event: any) {
   //this.periodo = event.target.value;

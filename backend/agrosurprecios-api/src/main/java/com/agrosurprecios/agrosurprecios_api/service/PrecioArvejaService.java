@@ -48,4 +48,9 @@ public class PrecioArvejaService {
 
         return repository.findByFechaBetween(inicio, fin);
     }
+    public Double obtenerPromedioTotal() {
+        Double promedio = repository.findAveragePrecioBultoTotal();
+        // Si no hay registros, devolvemos 0.0 en lugar de null
+        return (promedio != null) ? promedio : 0.0;
+    }
 }

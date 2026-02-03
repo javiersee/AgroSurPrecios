@@ -42,4 +42,8 @@ public class PrecioArvejaController {
         LocalDate localDate = LocalDate.parse(fecha);
         return service.obtenerPorDia(localDate);
     }
+    @GetMapping("/promedioTotal")
+    public Double promedioTotal() {
+        return service.obtenerPromedioTotal();
+    }
 }
