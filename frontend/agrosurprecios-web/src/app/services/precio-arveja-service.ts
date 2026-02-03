@@ -15,4 +15,7 @@ export class PrecioArvejaService  {
   obtenerHistorico(): Observable<PrecioArveja[]> {
     return this.http.get<PrecioArveja[]>(this.apiUrl);
   }
+  obtenerPromedioTotal(): Observable<number> {
+  return this.http.get<number>(`${this.apiUrl}/promedioTotal`);
+  }
 }

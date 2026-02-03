@@ -7,4 +7,8 @@
   <option value="anio">Año</option>
 </select>
 
+<p>Promedio Histórico: 
+  <strong>{{ (promedioTotal$ | async) | currency:'COP':'symbol':'1.0-0' }}</strong>
+</p>
+
 <canvas id="histogramaPrecios"></canvas>

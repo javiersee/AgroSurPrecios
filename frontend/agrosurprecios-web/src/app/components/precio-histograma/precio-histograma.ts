@@ -2,10 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { PrecioArvejaService } from '../../services/precio-arveja-service';
 import { PrecioArveja } from '../../models/precio-arveja.model';
 import Chart from 'chart.js/auto';
+import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-precio-histograma',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './precio-histograma.html',
   styleUrl: './precio-histograma.css',
 })
@@ -14,15 +17,18 @@ export class PrecioHistograma implements OnInit {
   precios: PrecioArveja[] = [];
   chart!: Chart;
   periodo: string = 'Hoy';
+  promedioTotal$!: Observable<number>;
 
   constructor(private precioService: PrecioArvejaService) {}
 
   ngOnInit(): void {
+    this.promedioTotal$ = this.precioService.obtenerPromedioTotal();
     this.obtenerPrecios();
     this.periodo = "Hoy";
+    
   }
   onPeriodoChange(event: any) {
-  //this.periodo = event.target.value;
+  this.periodo = event.target.value;
   //this.cargarDatos();
  }
 
@@ -93,4 +99,5 @@ export class PrecioHistograma implements OnInit {
       }
     });
   }
+ 
 }
