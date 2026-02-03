@@ -1,14 +1,26 @@
-<h2>📊 Histograma de precios de la arveja</h2>
+<div class="histograma-container">
+  <div class="header-grafico">
+    <h2 class="titulo">📊 Histograma de precios</h2>
+    
+    <div class="select-wrapper">
+      <select [value]="periodo" (change)="onPeriodoChange($event)" class="select-periodo">
+        <option value="hoy">Hoy</option>
+        <option value="semana">Semana</option>
+        <option value="mes">Mes</option>
+        <option value="anio">Año</option>
+        <option value="todos">Todos los registros</option>
+      </select>
+    </div>
+  </div>
 
-<select (change)="onPeriodoChange($event)">
-  <option value="hoy">Hoy</option>
-  <option value="semana">Semana</option>
-  <option value="mes">Mes</option>
-  <option value="anio">Año</option>
-</select>
+  <div class="card-promedio">
+    <span class="label-promedio">PROMEDIO HISTÓRICO</span>
+    <strong class="valor-promedio">
+      {{ (promedioTotal$ | async) | currency:'COP':'symbol':'1.0-0' }}
+    </strong>
+  </div>
 
-<p>Promedio Histórico: 
-  <strong>{{ (promedioTotal$ | async) | currency:'COP':'symbol':'1.0-0' }}</strong>
-</p>
-
-<canvas id="histogramaPrecios"></canvas>
+  <div class="chart-container">
+    <canvas id="histogramaPrecios"></canvas>
+  </div>
+</div>

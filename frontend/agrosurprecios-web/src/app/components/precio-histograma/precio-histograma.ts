@@ -13,47 +13,38 @@ import { Observable } from 'rxjs';
   styleUrl: './precio-histograma.css',
 })
 export class PrecioHistograma implements OnInit {
-
   precios: PrecioArveja[] = [];
   chart!: Chart;
-  periodo: string = 'Hoy';
+  // ✅ Cambiado a 'todos' para coincidir con el valor del select
+  periodo: string = 'todos'; 
   promedioTotal$!: Observable<number>;
 
   constructor(private precioService: PrecioArvejaService) {}
 
   ngOnInit(): void {
     this.promedioTotal$ = this.precioService.obtenerPromedioTotal();
-    this.obtenerPrecios();
-    this.periodo = "Hoy";
-    
+    this.obtenerPrecios(); // Al cargar por defecto trae el histórico
   }
+
   onPeriodoChange(event: any) {
-  this.periodo = event.target.value;
-  //this.cargarDatos();
- }
+    this.periodo = event.target.value;
+    // Aquí podrías añadir lógica para filtrar localmente o llamar a otro endpoint
+  }
 
   obtenerPrecios() {
     this.precioService.obtenerHistorico().subscribe({
       next: data => {
-
-        // ✅ Ordenar por fecha ascendente
         this.precios = data.sort(
           (a, b) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime()
         );
-
-        this.crearGraficoLinea(); // 🔥 CAMBIO NOMBRE FUNCIÓN
+        this.crearGraficoLinea();
       },
       error: err => console.error('Error al obtener precios', err)
     });
   }
 
   crearGraficoLinea() {
-
-    // ✅ Fecha + Hora (Trading necesita tiempo completo)
-    const labels = this.precios.map(p =>
-      new Date(p.fecha).toLocaleString()
-    );
-
+    const labels = this.precios.map(p => new Date(p.fecha).toLocaleString());
     const valores = this.precios.map(p => p.precioBulto);
 
     if (this.chart) {
@@ -61,43 +52,30 @@ export class PrecioHistograma implements OnInit {
     }
 
     this.chart = new Chart('histogramaPrecios', {
-      type: 'line', // 🔥 CAMBIO CLAVE (ANTES era bar)
-
+      type: 'line',
       data: {
         labels,
         datasets: [{
           label: 'Precio por bulto (COP)',
           data: valores,
-          borderWidth: 2,
-          tension: 0.3,     // curva suave tipo trading
-          pointRadius: 2,   // puntos pequeños
-          fill: false       // sin relleno
+          // ✅ Color verde institucional aplicado
+          borderColor: '#689f38', 
+          backgroundColor: 'rgba(104, 159, 56, 0.1)',
+          borderWidth: 3,
+          tension: 0.4,
+          pointRadius: 3,
+          pointBackgroundColor: '#689f38',
+          fill: true
         }]
       },
-
       options: {
         responsive: true,
-        plugins: {
-          legend: {
-            display: true
-          }
-        },
+        plugins: { legend: { display: true } },
         scales: {
-          x: {
-            title: {
-              display: true,
-              text: 'Fecha y Hora'
-            }
-          },
-          y: {
-            title: {
-              display: true,
-              text: 'Precio (COP)'
-            }
-          }
+          x: { title: { display: true, text: 'Fecha y Hora' } },
+          y: { title: { display: true, text: 'Precio (COP)' } }
         }
       }
     });
   }
- 
 }

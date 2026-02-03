@@ -1,0 +1,46 @@
+/* Color principal extraído de tu imagen: #689f38 */
+
+.card-promedio {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  border-top: 6px solid #689f38; /* EL VERDE DE TU IMAGEN */
+  margin-bottom: 30px;
+}
+
+.valor-promedio {
+  font-size: 2.5rem;
+  color: #2d3436;
+  display: block;
+  font-weight: 800;
+}
+
+.label-promedio {
+  color: #b2bec3;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.select-periodo {
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 8px 15px;
+  background: white;
+  color: #555;
+  font-weight: 500;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.select-periodo:focus, .select-periodo:hover {
+  border-color: #689f38; /* VERDE AL SELECCIONAR */
+}
+
+.titulo {
+  color: #2d3436;
+  font-weight: 700;
+}
