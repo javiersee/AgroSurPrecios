@@ -39,7 +39,7 @@ public class PrecioArvejaService {
     }
 
     public List<PrecioArveja> listar() {
-        return repository.findAllByOrderByFechaDesc();
+        return repository.findAllByOrderByFechaAsc();
     }
 
     public PrecioArveja ultimoPrecio() {

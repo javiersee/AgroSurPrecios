@@ -14,9 +14,12 @@
   </div>
 
   <div class="card-promedio">
-    <span class="label-promedio">PROMEDIO HISTÓRICO</span>
+    <span class="label-promedio">
+      PROMEDIO {{ periodo === 'todos' ? 'HISTÓRICO' : (periodo | uppercase) }}
+    </span>
+    
     <strong class="valor-promedio">
-      {{ (promedioTotal$ | async) | currency:'COP':'symbol':'1.0-0' }}
+      {{ ((periodo === 'todos' ? (promedioTotal$ | async) : promedioVisual) || 0) | currency:'COP':'symbol':'1.0-0' }}
     </strong>
   </div>
 

@@ -27,7 +27,7 @@ export class PrecioArvejaService  {
 
   // Historial por semanas (Gráfico de barras)
   obtenerSemanal(): Observable<HistorialSemanalDTO> {
-    return this.http.get<HistorialSemanalDTO>(`${this.apiUrl}/semanal`);
+    return this.http.get<HistorialSemanalDTO>(`${this.apiUrl}/historialSemanal`);
   }
 
   // Historial por meses

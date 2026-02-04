@@ -39,20 +39,22 @@ public interface PrecioArvejaRepository extends JpaRepository<PrecioArveja, Long
             "AVG(precio_bulto) as promedio " +
             "FROM precios_arveja " + // ✅ DEBE SER: precios_arveja (plural y minúsculas)
             "GROUP BY semana " +
-            "ORDER BY semana DESC", nativeQuery = true)
+            "ORDER BY semana ASC", nativeQuery = true)
     List<SemanaPromedio> findPromediosAgrupadosPorSemana();
 
     @Query(value = "SELECT to_char(fecha, 'YYYY-MM') as mes, " +
             "AVG(precio_bulto) as promedio " +
             "FROM precios_arveja " +
             "GROUP BY mes " +
-            "ORDER BY mes DESC", nativeQuery = true)
+            "ORDER BY mes ASC", nativeQuery = true)
     List<SemanaPromedio> findPromediosAgrupadosPorMes();
 
     @Query(value = "SELECT to_char(fecha, 'YYYY') as anio, " +
             "AVG(precio_bulto) as promedio " +
             "FROM precios_arveja " +
             "GROUP BY anio " +
-            "ORDER BY anio DESC", nativeQuery = true)
+            "ORDER BY anio ASC", nativeQuery = true)
     List<SemanaPromedio> findPromediosAgrupadosPorAnio();
+
+    List<PrecioArveja> findAllByOrderByFechaAsc();
 }
