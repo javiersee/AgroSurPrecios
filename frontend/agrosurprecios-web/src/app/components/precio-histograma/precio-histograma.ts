@@ -33,26 +33,15 @@ export class PrecioHistograma implements OnInit {
     this.periodo = event.target.value;
 
     switch (this.periodo) {
-      
-
       case 'hoy':
         this.precioService.obtenerHoy().subscribe(res => {
-          // 1. Extraemos la hora y minutos (ej: 03:59 PM o 15:59 según el navegador)
-          const labels = res.registros.map(r => {
-            const fechaObj = new Date(r.fecha);
-            return fechaObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-          });
-
-          // 2. Extraemos los precios
+          const labels = res.registros.map(r => new Date(r.fecha).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }));
           const valores = res.registros.map(r => r.precioBulto);
-
-          // 3. Asignamos el promedio con el parche para el error de tipado
           this.promedioVisual = res.promedio || 0;
-
-          // 4. Actualizamos el gráfico con un título descriptivo
-          this.actualizarGrafico(labels, valores, 'Precios Detallados de Hoy');
+          this.actualizarGrafico(labels, valores, 'Precios de Hoy');
         });
         break;
+
 
       case 'semana':
         this.precioService.obtenerSemanal().subscribe(res => {

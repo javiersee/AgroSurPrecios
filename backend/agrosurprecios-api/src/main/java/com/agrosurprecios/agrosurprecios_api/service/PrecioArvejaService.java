@@ -4,6 +4,7 @@ import com.agrosurprecios.agrosurprecios_api.domain.HistorialSemanalDTO;
 import com.agrosurprecios.agrosurprecios_api.domain.PrecioPeriodoDTO;
 import com.agrosurprecios.agrosurprecios_api.domain.SemanaPromedio;
 import com.agrosurprecios.agrosurprecios_api.repository.PrecioArvejaRepository;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
@@ -16,6 +17,7 @@ import  com.agrosurprecios.agrosurprecios_api.domain.PrecioArveja;
 @Service
 public class PrecioArvejaService {
 
+    private SimpMessagingTemplate messagingTemplate;
 
     private final PrecioArvejaRepository repository;
 
@@ -34,7 +36,7 @@ public class PrecioArvejaService {
                 precioBulto,
                 "Ipiales"
         );
-
+        messagingTemplate.convertAndSend("/topic/cambio-precios", "NUEVO_DATO");
         return repository.save(precio);
     }
 
