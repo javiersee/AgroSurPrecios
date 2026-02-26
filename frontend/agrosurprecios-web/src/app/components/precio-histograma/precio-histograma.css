@@ -1,5 +1,21 @@
 /* Color principal extraído de tu imagen: #689f38 */
 
+.histograma-container {
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(6px);
+}
+
+.header-grafico {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
 .card-promedio {
   background: #ffffff;
   border-radius: 15px;
@@ -25,6 +41,25 @@
   font-weight: 600;
 }
 
+.select-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: #ffffff;
+  border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e0e0e0;
+}
+
+.select-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #7f8c8d;
+}
+
 .select-periodo {
   border: 2px solid #e0e0e0;
   border-radius: 10px;
@@ -43,4 +78,8 @@
 .titulo {
   color: #2d3436;
   font-weight: 700;
+}
+
+.chart-container {
+  margin-top: 20px;
 }

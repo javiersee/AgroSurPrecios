@@ -17,12 +17,13 @@ import  com.agrosurprecios.agrosurprecios_api.domain.PrecioArveja;
 @Service
 public class PrecioArvejaService {
 
-    private SimpMessagingTemplate messagingTemplate;
+    private final SimpMessagingTemplate messagingTemplate;
 
     private final PrecioArvejaRepository repository;
 
-    public PrecioArvejaService(PrecioArvejaRepository repository) {
+    public PrecioArvejaService(PrecioArvejaRepository repository, SimpMessagingTemplate messagingTemplate) {
         this.repository = repository;
+        this.messagingTemplate = messagingTemplate;
     }
 
     public PrecioArveja guardarPrecio(Double precioBulto) {

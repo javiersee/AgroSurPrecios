@@ -1,8 +1,9 @@
 <div class="histograma-container">
   <div class="header-grafico">
     <h2 class="titulo">📊 Histograma de precios</h2>
-    
+
     <div class="select-wrapper">
+      <span class="select-label">Ver</span>
       <select [value]="periodo" (change)="onPeriodoChange($event)" class="select-periodo">
         <option value="hoy">Hoy</option>
         <option value="semana">Semana</option>
@@ -15,9 +16,16 @@
 
   <div class="card-promedio">
     <span class="label-promedio">
-      PROMEDIO {{ periodo === 'todos' ? 'HISTÓRICO' : (periodo | uppercase) }}
+      PROMEDIO
+      <ng-container [ngSwitch]="periodo">
+        <span *ngSwitchCase="'hoy'">DE HOY</span>
+        <span *ngSwitchCase="'semana'">SEMANAL</span>
+        <span *ngSwitchCase="'mes'">MENSUAL</span>
+        <span *ngSwitchCase="'anio'">ANUAL</span>
+        <span *ngSwitchDefault>HISTÓRICO</span>
+      </ng-container>
     </span>
-    
+
     <strong class="valor-promedio">
       {{ ((periodo === 'todos' ? (promedioTotal$ | async) : promedioVisual) || 0) | currency:'COP':'symbol':'1.0-0' }}
     </strong>
